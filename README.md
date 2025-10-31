@@ -8,8 +8,8 @@ O projeto demonstra a configuração de uma rede Bridge (Ponte) estável e a com
 ⚙️ Desafios e Soluções de Infraestrutura - A parte mais crítica do projeto foi garantir a conectividade estável entre as VMs e a rede física. Resolvido após usar a Bridge e inserir um IP estático em ambas as VMs. 
 
 💻 Configuração do Ambiente e gRPCEm ambas as VMs, foi criado um ambiente virtual Python (venv) para isolar as dependências e evitar conflitos de versão.
-1. Dependências e Setup Inicial
-2. Bash# Executado nas VMs Servidor e Cliente
+1. Dependências e Setup Inicial executado nas VMs Servidor e Cliente:
+_Bash _
 sudo apt update
 sudo apt install python3-venv -y
 python3 -m venv venv
@@ -17,13 +17,20 @@ source venv/bin/activate
 pip install grpcio grpcio-tools
 3. Definição do Contrato (RPC)O arquivo calc.proto define as mensagens (CalcRequest, CalcResponse) e o serviço Calculator com os métodos RPC (Somar, Subtrair, etc.).
 4. Compilação do Protocolo  .proto foi compilado em ambas as VMs para gerar os stubs Python necessários para o Servidor e Cliente:
-5. Bash# Executado nas VMs Servidor e Cliente
+_Bash_
 python3 -m grpc_tools.protoc -I=rpc_calc/proto --python_out=rpc_calc/client --grpc_python_out=rpc_calc/client rpc_calc/proto/calc.proto
 
-🚀 Como Executar o ProjetoIniciar o Servidor (VM 192.168.0.50):Bashcd /home/server
+🚀 Como Executar o Projeto - 
+Iniciar o Servidor (VM 192.168.0.50):
+_Bash_ 
+cd /home/server
 source venv/bin/activate
 python3 rpc_calc/server/server.py
-(O Servidor permanecerá ativo, esperando conexões.)Executar o Cliente (VM 192.168.0.60):Bashcd /home/client
+(O Servidor permanecerá ativo, esperando conexões.)
+Executar o Cliente (VM 192.168.0.60):
+_Bash_
+cd /home/client
 source venv/bin/activate
 python3 rpc_calc/client/client.py
 (O Cliente enviará requisições para o IP 192.168.0.50:50051 e imprimirá os resultados.)
+
