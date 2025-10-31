@@ -23,14 +23,17 @@ python3 -m grpc_tools.protoc -I=rpc_calc/proto --python_out=rpc_calc/client --gr
 🚀 Como Executar o Projeto - 
 Iniciar o Servidor (VM 192.168.0.50):
 _Bash_ 
+
 cd /home/server
 source venv/bin/activate
 python3 rpc_calc/server/server.py
 (O Servidor permanecerá ativo, esperando conexões.)
 Executar o Cliente (VM 192.168.0.60):
 _Bash_
+
 cd /home/client
 source venv/bin/activate
 python3 rpc_calc/client/client.py
 (O Cliente enviará requisições para o IP 192.168.0.50:50051 e imprimirá os resultados.)
+
 
