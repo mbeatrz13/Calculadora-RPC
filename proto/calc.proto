@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package calc; 
+
+message CalcRequest {
+	double num1 = 1;
+	double num2 = 2;
+} 
+message CalcResponse {
+	double result = 1;
+	string message = 2;
+} 
+service Calculator{
+	rpc Somar (CalcRequest) returns (CalcResponse);
+	rpc Subtrair (CalcRequest) returns (CalcResponse);
+	rpc Multiplicar (CalcRequest) returns (CalcResponse);
+	rpc Dividir (CalcRequest) returns (CalcResponse);
+}
